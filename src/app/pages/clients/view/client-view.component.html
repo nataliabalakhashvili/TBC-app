@@ -1,0 +1,113 @@
+<div class="container-fluid clients">
+  <div class="header d-flex justify-content-between">
+    <h5 class="title">კლიენტის დეტალური ინფორმაცია</h5>
+
+    <button mat-button class="primary-btn" routerLink="/clients">
+      <img src="../../../../assets/images/icons/list.svg" alt="" />
+      კლიენტების სია
+    </button>
+  </div>
+
+  <div *ngIf="!clientId || (clientId && client)">
+    <div>
+      <div class="section">
+        <div class="section-title">
+          ზოგადი ინფორმაცია
+        </div>
+
+        <div class="app-form mx-auto" style="max-width: 1200px;">
+          <div class="row">
+            <div class="col">
+              <div class="app-form-input">
+                <div class="app-form-input-title">
+                  <span class="text-blue">სახელი: </span>
+                  {{ client?.name }}
+                </div>
+              </div>
+
+              <div class="app-form-input">
+                <div class="app-form-input-title">
+                  <span class="text-blue">გვარი: </span>
+                  {{ client?.lastName }}
+                </div>
+              </div>
+
+              <div class="app-form-input">
+                <div class="app-form-input-title">
+                  <span class="text-blue">სქესი: </span>
+                  {{ getGender(client?.gender) }}
+                </div>
+              </div>
+
+              <div class="app-form-input">
+                <div class="app-form-input-title">
+                  <span class="text-blue">პირადი ნომერი: </span>
+                  {{ client?.privateNumber }}
+                </div>
+              </div>
+
+              <div class="app-form-input">
+                <div class="app-form-input-title">
+                  <span class="text-blue">მობილური: </span>
+                  {{ client?.mobile }}
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="app-form-input col-12">
+                <div class="app-form-input-title">
+                  <span class="text-blue">ქვეყანა(იურ. მისამართი): </span>
+                  {{ client?.legalAddressCountry }}
+                </div>
+              </div>
+
+              <div class="app-form-input col-12">
+                <div class="app-form-input-title">
+                  <span class="text-blue"> ქალაქი(იურ. მისამართი)</span>
+                  {{ client?.legalAddressCity }}
+                </div>
+              </div>
+
+              <div class="app-form-input col-12">
+                <div class="app-form-input-title">
+                  <span class="text-blue">იურიდიული მისამართი: </span>
+                  {{ client?.legalAddress }}
+                </div>
+              </div>
+            </div>
+            
+          <div class="col">
+            <div class="app-form-input col-12">
+              <div class="app-form-input-title">
+                <span class="text-blue">ქვეყანა(ფიზიკური მისამართი): </span>
+                {{ client?.physicalAddressCountry }}
+              </div>
+            </div>
+
+            <div class="app-form-input col-12">
+              <div class="app-form-input-title">
+                <span class="text-blue">ქალაქი(ფიზიკური მისამართი): </span>
+                {{ client?.physicalAddressCity }}
+              </div>
+            </div>
+
+            <div class="app-form-input col-12">
+              <div class="app-form-input-title">
+                <span class="text-blue">ფიზიკური მისამართი: </span>
+                {{ client?.physicalAddress }}
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <app-accounts 
+    [clientId]="clientId" 
+    [client]="client"
+  ></app-accounts>
+
+</div>

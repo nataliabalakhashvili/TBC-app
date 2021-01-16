@@ -1,0 +1,323 @@
+<div class="container-fluid clients">
+  <div class="header d-flex justify-content-between">
+    <h5 class="title">
+      
+      <ng-container *ngIf="!this.editId">კლიენტის დამატება</ng-container>
+      <ng-container *ngIf="this.editId">კლიენტის რედაქტირება</ng-container>
+    
+    </h5>
+ 
+    <div>
+      <button
+        mat-button
+        class="back-btn primary-btn"
+        (click)="onClientsListButtonClick()"
+      >
+        უკან დაბრუნება
+      </button>
+
+      <button mat-button class="submit-btn primary-btn" (click)="onSubmit()">
+        გაგრძელება
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!editId || (editId && client)">
+    <form
+      action=""
+      [formGroup]="form"
+    >
+      <!-- class="client-detail" -->
+      <div class="section">
+        <div class="section-title">
+          ზოგადი ინფორმაცია
+        </div>
+
+        <div class="app-form mx-auto">
+          <div class="row">
+            <div class="col">
+              <div
+                class="app-form-input"
+                [ngClass]="{ error: checkFormControlValue('name') }"
+              >
+                <div class="app-form-input-title">
+                  სახელი*
+                  <ng-container *ngIf="checkFormControlValue('name')">
+                    <span
+                      class="error"
+                      *ngIf="
+                        form.get('name').hasError('minlength') ||
+                        form.get('name').hasError('maxlength')
+                      "
+                    >
+                      შეიყვანეთ მინიმუმ 2 მაქსიმუმ 50 სიმბოლო.
+                    </span>
+                    <span
+                      class="error"
+                      *ngIf="
+                        form.get('name').hasError('OnlyLatinOrGeorgianAlphabet')
+                      "
+                    >
+                      დასაშვებია მხოლოდ ქართული ან მხოლოდ ლათინური სიმბოლოები.
+                    </span>
+                  </ng-container>
+                </div>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ჩაწერე"
+                  formControlName="name"
+                  min="2"
+                  max="50"
+                />
+              </div>
+
+              <div
+                class="app-form-input"
+                [ngClass]="{ error: checkFormControlValue('lastName') }"
+              >
+                <div class="app-form-input-title">
+                  გვარი*
+                  <ng-container *ngIf="checkFormControlValue('lastName')">
+                    <span
+                      class="error"
+                      *ngIf="
+                        form.get('lastName').hasError('minlength') ||
+                        form.get('lastName').hasError('maxlength')
+                      "
+                    >
+                      შეიყვანეთ მინიმუმ 2 მაქსიმუმ 50 სიმბოლო.
+                    </span>
+                    <span
+                      class="error"
+                      *ngIf="
+                        form
+                          .get('lastName')
+                          .hasError('OnlyLatinOrGeorgianAlphabet')
+                      "
+                    >
+                      დასაშვებია მხოლოდ ქართული ან მხოლოდ ლათინური სიმბოლოები.
+                    </span>
+                  </ng-container>
+                </div>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ჩაწერე"
+                  formControlName="lastName"
+                />
+              </div>
+
+              <div class="app-form-select">
+                <div class="app-form-input-title">
+                  სქესი*
+                </div>
+                <mat-form-field class="form-select">
+                  <mat-select
+                    name="type"
+                    formControlName="gender"
+                    [(value)]="gender"
+                  >
+                    <mat-option
+                      [value]="1"
+                      (click)="onGenderChange(1)"
+                    >
+                      მდედრ.
+                    </mat-option>
+                    <mat-option [value]="2" (click)="onGenderChange(2)">
+                      მამრ.
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div
+                class="app-form-input"
+                [ngClass]="{ error: checkFormControlValue('privateNumber') }"
+              >
+                <div class="app-form-input-title">
+                  პირადი ნომერი*
+                  <ng-container *ngIf="checkFormControlValue('privateNumber')">
+                    <span class="error">
+                      შეიყვანეთ 11-ნიშნა რიცხვი.
+                    </span>
+                  </ng-container>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="ჩაწერე"
+                  formControlName="privateNumber"
+                  type="text"
+                />
+              </div>
+
+              <div
+                class="app-form-input"
+                [ngClass]="{ error: checkFormControlValue('mobile') }"
+              >
+                <div class="app-form-input-title">
+                  მობილური*
+                  <ng-container *ngIf="checkFormControlValue('mobile')">
+                    <span class="error">
+                      შეიყვანეთ 5-იანით დაწყებული 9-ნიშნა რიცხვი.
+                    </span>
+                  </ng-container>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="ჩაწერე"
+                  formControlName="mobile"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="col d-flex flex-column h-100"
+                style="width: 100%; max-width: 458px;"
+              >
+                <div class="app-form-input-title file-upload">
+                  სურათი
+                </div>
+
+                <div class="custom-file flex-grow-1 h-100">
+                  <app-file-uploader
+                    id="photoUploader"
+                    class="h-100"
+                    [shownImage]="photoUrl"
+                    (uploaded)="onPhotoUploaded($event)"
+                  ></app-file-uploader>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          იურიდიული მისამართები
+        </div>
+
+        <div class="app-form mx-auto">
+          <div class="row">
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('legalAddressCountry')
+              }"
+            >
+              <div class="app-form-input-title">
+                ქვეყანა(იურ. მისამართი)*
+              </div>
+              <input
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="legalAddressCountry"
+                type="text"
+              />
+            </div>
+
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('legalAddressCity')
+              }"
+            >
+              <div class="app-form-input-title">
+                ქალაქი(იურ. მისამართი)*
+              </div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="legalAddressCity"
+              />
+            </div>
+
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('legalAddress')
+              }"
+            >
+              <div class="app-form-input-title">
+                იურიდიული მისამართი*
+              </div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="legalAddress"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          ფიზიკური მისამართები
+        </div>
+
+        <div class="app-form mx-auto">
+          <div class="row">
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('physicalAddressCountry')
+              }"
+            >
+              <div class="app-form-input-title">
+                ქვეყანა(ფიზიკური მისამართი)*
+              </div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="physicalAddressCountry"
+              />
+            </div>
+
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('physicalAddressCity')
+              }"
+            >
+              <div class="app-form-input-title">
+                ქალაქი(ფიზიკური მისამართი)*
+              </div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="physicalAddressCity"
+              />
+            </div>
+
+            <div
+              class="app-form-input col-6"
+              [ngClass]="{
+                error: checkFormControlValue('physicalAddress')
+              }"
+            >
+              <div class="app-form-input-title">
+                ფიზიკური მისამართი*
+              </div>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="ჩაწერე"
+                formControlName="physicalAddress"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div
+  class="h-100"
+  [ngClass]="{
+    'file-uploader__form--validate': showValidationMessage,
+    'is-invalid': error
+  }"
+  enctype="multipart/form-data"
+>
+  <label
+    for="file"
+    class="custom-file-label mb-0 h-100"
+    (dragover)="$event.preventDefault()"
+    (drop)="drop($event)"
+    [ngClass]="{ 'file-uploader__no-border': shownImage }"
+    style="background: no-repeat center; background-size: contain;"
+    [ngStyle]="shownImage && { 'background-image': 'url(' + shownImage + ')' }"
+  >
+    <ng-container *ngIf="!shownImage">
+      <img src="../../../assets/images/icons/camera.svg" alt="" />
+      <span class="mt-3">ატვირთე სურათი</span>
+    </ng-container>
+  </label>
+
+  <input
+    type="file"
+    id="file"
+    class="custom-file-input"
+    accept="image/jpg, image/jpeg, image/png"
+    (change)="handleFileInput($event.target.files)"
+  />
+</div>

@@ -1,0 +1,139 @@
+<div class="container-fluid clients">
+  <div class="header d-flex justify-content-between">
+    <h5 class="title">დამატება</h5>
+
+    <div>
+        <button
+          mat-button
+          class="back-btn primary-btn"
+          (click)="onClientsListButtonClick()"
+        >
+          დეტალურ გვერდზე დაბრუნება
+        </button>
+
+        <button 
+          mat-button 
+          class="submit-btn primary-btn" 
+          (click)="onSubmit()"
+        >
+          დამატება
+        </button>
+      </div>
+  </div>
+
+  <div *ngIf="client">
+    <form
+      action=""
+      [formGroup]="form"
+      class="client-detail"
+    >
+      <div class="section">
+        <div class="section-title">
+          {{ client.name }} - ის ანგარიშის დამატება
+        </div>
+
+        <div class="app-form mx-auto">
+          <div class="row">
+            <div class="col">
+              <div class="app-form-select">
+                <div class="app-form-input-title">
+                  ანგარიშის ტიპი*
+                </div>
+                <mat-form-field class="form-select">
+                  <mat-select
+                    name="accountType"
+                    formControlName="accountType"
+                    [value]="0"
+                  >
+                    <mat-option
+                      [value]="0"
+                    >
+                      მიმდინარე
+                    </mat-option>
+                    <mat-option
+                      [value]="1"
+                    >
+                      შემნახველი
+                    </mat-option>
+                    <mat-option
+                      [value]="2"
+                    >
+                      დაგროვებითი
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="app-form-select">
+                <div class="app-form-input-title">
+                  ანგარიშის დამატება სხვადასხვა ვალუტაში*
+                </div>
+                <div class=" row">
+                  <div
+                    class="custom-checkbox custom-checkbox-selected-blue justify-content-start col"
+                    style="margin-top: 12px;"
+                  >
+                    <input
+                      type="checkbox"
+                      id="GEL"
+                      class="custom-checkbox-control"
+                      formControlName="GEL"
+                    />
+                    <label for="GEL" class="custom-checkbox-label">
+                      <span class="ml-3">GEL</span>
+                    </label>
+                  </div>
+                    
+                  <div
+                    class="custom-checkbox custom-checkbox-selected-blue justify-content-start col"
+                    style="margin-top: 12px;"
+                  >
+                    <input
+                      type="checkbox"
+                      id="USD"
+                      class="custom-checkbox-control"
+                      formControlName="USD"
+                    />
+                    <label for="USD" class="custom-checkbox-label">
+                      <span class="ml-3">USD</span>
+                    </label>
+                  </div>
+                    
+                  <div
+                    class="custom-checkbox custom-checkbox-selected-blue justify-content-start col"
+                    style="margin-top: 12px;"
+                  >
+                    <input
+                      type="checkbox"
+                      id="EUR"
+                      class="custom-checkbox-control"
+                      formControlName="EUR"
+                    />
+                    <label for="EUR" class="custom-checkbox-label">
+                      <span class="ml-3">EUR</span>
+                    </label>
+                  </div>
+                    
+                  <div
+                    class="custom-checkbox custom-checkbox-selected-blue justify-content-start col"
+                    style="margin-top: 12px;"
+                  >
+                    <input
+                      type="checkbox"
+                      id="RUB"
+                      class="custom-checkbox-control"
+                      formControlName="RUB"
+                    />
+                    <label for="RUB" class="custom-checkbox-label">
+                      <span class="ml-3">RUB</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

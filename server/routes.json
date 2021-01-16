@@ -1,0 +1,8 @@
+{
+  "/api/*": "/$1",
+  "/:resource/:id/show": "/:resource/:id",
+  "/clients/view/:id": "/clients?id=:id",
+  "/clients/edit/:id": "/clients?id=:id",
+  "/clients/view/:id/add-account": "/clients?id=:id"
+  // "/clients/:id": "/clients?id=:id",
+}

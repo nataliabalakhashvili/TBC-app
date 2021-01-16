@@ -1,0 +1,334 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+@import "angular-notifier-override";
+@import "angular-notifier-imports";
+@import "./../../../node_modules/primeicons/primeicons.css";
+@import "./../../../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "./../../../node_modules/primeng/resources/primeng.min.css";
+
+$tbc-app-primary: mat-palette($mat-indigo);
+$tbc-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$tbc-app-warn: mat-palette($mat-red);
+$tbc-app-theme: mat-light-theme(
+  $tbc-app-primary,
+  $tbc-app-accent,
+  $tbc-app-warn
+);
+
+@include angular-material-theme($tbc-app-theme);
+
+@import "_reset";
+@import "_fonts";
+
+* {
+  font-family: NotoSans;
+}
+
+body {
+  background-color: #f6f7fb !important;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container-fluid {
+  max-width: 1600px;
+  width: 100%;
+}
+
+// table {
+//   width: 100%;
+//   border: 1px solid rgba(230, 236, 245, 0.7);
+
+//   * {
+//     font-size: 16px !important;
+//   }
+// }
+
+.action {
+  &-control {
+    width: 140px !important;
+  }
+
+  &-btn {
+    min-width: 16px !important;
+    padding: 0 8px !important;
+  }
+}
+
+.error {
+  color: red !important;
+
+  input {
+    border-color: red !important;
+  }
+
+  .error {
+    font-size: 13px;
+  }
+
+  * {
+    color: red !important;
+  }
+}
+
+.text-blue {
+  color: #0077ff;
+}
+
+.header {
+  margin: 16px 0;
+}
+
+.title {
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #0077ff;
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 70px;
+}
+
+.submit-btn {
+  margin: 0 0 0 4px !important;
+  color: #ffffff;
+  background-color: #0077ff;
+
+  &.disabled {
+    opacity: 0.3;
+  }
+}
+
+.back-btn {
+  margin: 0 16px !important;
+  color: #0077ff;
+  background: transparent;
+}
+
+.primary-btn {
+  color: white;
+  display: block;
+  height: 61px;
+  background-color: #0077ff;
+  padding: 0 40px !important;
+
+  img {
+    width: 12px;
+    filter: invert(1);
+    margin-right: 10px;
+  }
+}
+
+.section {
+  background: white;
+  margin: 0 auto 40px;
+  border-radius: 4px;
+  border: solid 1px #e6ecf5;
+  border-top: none;
+
+  &-title {
+    padding: 24px 32px;
+    font-family: NotoSans;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.8;
+    letter-spacing: normal;
+    color: #0077ff;
+    border-bottom: 1px solid #e6ecf5;
+    border-top: 1px solid #e6ecf5;
+  }
+}
+
+.app-form {
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+  max-width: 1000px;
+  flex-basis: 1000px;
+  padding: 32px 0 70px;
+
+  &-select {
+    padding-top: 25px;
+  }
+
+  &-input {
+    padding-top: 25px;
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    input {
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      border: solid 1px #e6ecf5;
+      background-color: #ffffff;
+      font-family: NotoSans;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      padding-left: 24px;
+      box-sizing: border-box;
+      color: #c0c5d2;
+      resize: none;
+
+      &::placeholder {
+        font-family: NotoSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        color: #c0c5d2;
+      }
+
+      &.disabled {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  &-textarea,
+  &-transport-fields {
+    textarea {
+      width: 100%;
+      height: 160px;
+      border-radius: 4px;
+      border: solid 1px #e6ecf5;
+      background-color: #ffffff;
+      font-family: NotoSans;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      padding-left: 24px;
+      box-sizing: border-box;
+      color: #c0c5d2;
+      resize: none;
+
+      &::placeholder {
+        font-family: NotoSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        color: #c0c5d2;
+      }
+    }
+  }
+
+  &-input-title,
+  &-textarea-title {
+    font-family: NotoSans;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    margin-bottom: 16px;
+    color: #515366;
+
+    &.file-upload {
+      margin-top: 22px;
+    }
+  }
+
+  &-sum {
+    padding: 24px 32px;
+    font-family: NotoSans;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.8;
+    letter-spacing: normal;
+    color: #495057;
+  }
+
+  &-input-checkbox {
+    font-family: NotoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    box-sizing: border-box;
+    color: #515366;
+  }
+}
+
+.form-select {
+  width: 100%;
+  height: 60px;
+  border-radius: 4px;
+  border: solid 1px #e6ecf5;
+  background-color: #ffffff;
+  font-family: NotoSans;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  box-sizing: border-box;
+  color: #c0c5d2;
+
+  .mat-form-field-wrapper {
+    height: 100%;
+    border-bottom: none;
+  }
+
+  .mat-select-trigger {
+    padding: 0 24px;
+  }
+
+  &.mat-form-field {
+    padding: 0 !important;
+  }
+
+  .mat-form-field-underline {
+    height: 0 !important;
+  }
+
+  &::placeholder {
+    font-family: NotoSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #c0c5d2;
+  }
+}
+
+.p-column-filter,
+.p-dropdown {
+  width: 100% !important;
+}
+
+.p-datatable * {
+  // width: 100%;
+  font-size: 14px !important;
+
+  th,
+  td {
+    padding: 15px 10px !important;
+    width: 100%;
+  }
+}
+
+.p-datatable-wrapper {
+  background: white;
+  overflow: auto;
+  height: calc(100vh - 170px);
+}
